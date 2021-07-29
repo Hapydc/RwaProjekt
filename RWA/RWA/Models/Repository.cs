@@ -26,7 +26,7 @@ namespace RWA.Models
             {
                 yield return GetCustomerFromDataRow(row);
             }
-            
+
         }
         private static Customer GetCustomerFromDataRow(DataRow row)
         {
@@ -41,9 +41,25 @@ namespace RWA.Models
                 {
                     IDGrad = (int)row["GradID"],
                     Naziv = row["Naziv"].ToString(),
-                    DrzavaID=(int)row["DrzavaID"]
+                    DrzavaID = (int)row["DrzavaID"]
                 }
             };
+        }
+
+        public static List<Town> GetTowns(int countryID)
+        {
+            List<Town> towns = new List<Town>();
+            DataSet ds = SqlHelper.ExecuteDataset(cs, "GetTowns",countryID);
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                towns.Add(new Town
+                {
+                    IDGrad = (int)row["IDGrad"],
+                    Naziv = row["Naziv"].ToString(),
+                    DrzavaID=(int)row["DrzavaID"]
+                }); 
+            }
+            return towns;
         }
     }
 }

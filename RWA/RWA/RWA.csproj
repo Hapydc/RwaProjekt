@@ -132,6 +132,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Town.cs" />
+    <Compile Include="Models\ViewModel\EditVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using RWA.Models;
+using RWA.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,12 @@ namespace RWA.Controllers
         [HttpGet]
        public ActionResult EditCustomer(int id)
         {
-            var customer = Repository.GetCustomer(id);
+            Customer c = Repository.GetCustomer(id);
+            var customer = new EditVM
+            {
+                Customer =c,
+                Towns = Repository.GetTowns(c.Town.DrzavaID)
+            };
             return View(customer);
         } 
         [HttpPost]
