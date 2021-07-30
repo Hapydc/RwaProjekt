@@ -5,11 +5,13 @@ using System.Web;
 
 namespace RWA.Models.ViewModel
 {
-    public class EditVM
+    public class EditCustomerVM
     {
         public Customer Customer { get; set; }
 
         public List<Town> Towns { get; set; }
+
+        public int TownID { get; set; } 
 
 
     }

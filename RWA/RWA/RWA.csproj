@@ -123,6 +123,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomerController .cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -132,7 +133,9 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Town.cs" />
-    <Compile Include="Models\ViewModel\EditVM.cs" />
+    <Compile Include="Models\ViewModel\EditCustomerVM.cs" />
+    <Compile Include="Models\ViewModel\SelectTownVM.cs" />
+    <Compile Include="Models\ViewModel\ShowCustomersVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,11 +171,17 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\ShowCustomer.cshtml" />
-    <Content Include="Views\Home\EditCustomer.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\EditCustomer.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Customer\GetCustomersBills.cshtml" />
+    <Content Include="Views\Customer\GetFilteredCustomers.cshtml" />
+    <Content Include="Views\Customer\SelectCountry.cshtml" />
+    <Content Include="Views\Customer\SelectTown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Bill\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

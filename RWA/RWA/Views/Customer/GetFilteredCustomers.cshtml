@@ -1,0 +1,89 @@
+﻿@model  RWA.Models.ViewModel.ShowCustomersVM
+@{
+    ViewBag.Title = "Kupci";
+
+    SelectList ddlGradovi = new SelectList(
+    items: Model.Towns,
+    dataTextField: "Naziv",
+    dataValueField: "IDGrad");
+
+    SelectList ddlDrzave = new SelectList(
+        items: Model.Countries,
+        dataTextField: "Naziv",
+        dataValueField: "IDDrzava");
+}
+
+<div class="jumbotron">
+    @using (Html.BeginForm(controllerName: "Customer", actionName: "SelectTown", htmlAttributes: new { id = "formDrzava" }, routeValues: null, method: FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.Label(expression: "IDDrzava", labelText: "Drzava")
+            @Html.DropDownList(
+                optionLabel: "--- odaberi ---",
+                selectList: ddlDrzave,
+                name: "IDDrzava",
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+    }
+
+
+
+    @using (Html.BeginForm(controllerName: "Customer", actionName: "ShowFilteredCustomers", htmlAttributes: new { id = "formGrad" }, routeValues: null, method: FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.Label(expression: "IDGrad", labelText: "Grad")
+
+            @Html.DropDownList(
+                 optionLabel: "--- odaberi ---",
+                 selectList: ddlGradovi,
+                 name: "IDGrad",
+                 htmlAttributes: new { @class = "form-control" })
+        </div>
+    }
+    <hr />
+
+    <table class="table table-sm table-striped bg-info">
+        <thead>
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>E-mail</th>
+                <th>Telefon</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var k in Model.Customers)
+            {
+                <tr>
+                    <td>@k.Ime</td>
+                    <td>@k.Prezime</td>
+                    <td>
+                        @k.Email
+                    </td>
+                    <td>@k.Telefon</td>
+                    <td>
+                        @Html.ActionLink("Uredi", "EditCustomer", new { id = k.IDKupac }) |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>>
+
+@section scripts{
+    <script>
+        $('#IDDrzava').change(e => $('#formDrzava').submit());
+        $('#IDGrad').change(e => {
+            if (e.target.value !== '') {
+                $('table').show();
+                $('#formGrad').submit();
+            } else {
+                $('table').hide();
+            }
+        });
+    </script>
+
+}
+
+
