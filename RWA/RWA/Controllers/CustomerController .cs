@@ -12,7 +12,7 @@ namespace RWA.Controllers
     {
         public ActionResult Index()
         {
-            var customers = Repository.GetAllCustomers();
+            var customers = Repository.GetCustomers(null,SortType.SortByNameAsc,25,1);
             return View(customers);
         }
 
@@ -33,7 +33,7 @@ namespace RWA.Controllers
         }
 
         public ActionResult GetFilteredCustomers(Town town)
-        {
+        {  
 
             var IdTown = town.IDGrad;
             var idCountry = Repository.GetTown(IdTown).DrzavaID;
@@ -46,7 +46,8 @@ namespace RWA.Controllers
                 IDTown=IdTown
             };
             return View(model);
-        }
+            }
+        
 
         public ActionResult GetCustomersBills(int id)
         {
@@ -72,6 +73,8 @@ namespace RWA.Controllers
         public ActionResult EditCustomer(EditCustomerVM customerVM)
         {
             var customer = customerVM.Customer;
+            customer.IDKupac = 1;
+            customer.Ime = "Ivica";
             Repository.UpdateCustomer(customer);
             return RedirectToAction("Index");
         }

@@ -1,28 +1,12 @@
-﻿@model RWA.Models.ViewModel.ShowCustomersVM
+﻿@model IEnumerable<RWA.Models.Customer>
 
 
 @{
     ViewBag.Title = "Kupci";
-    SelectList ddlGradovi = new SelectList(
-items: Model.Towns,
-dataTextField: "Naziv",
-dataValueField: "IDGrad");
 
 }
 
 <h2>Kupci</h2>
-
-@using (Html.BeginForm(controllerName: "Customer", actionName: "GetFilteredCustomers", htmlAttributes: new { id = "formGrad" }, routeValues: null, method: FormMethod.Post))
-{
-    <div class="form-group">
-        @Html.Label(expression: "IDGrad", labelText: "Grad")
-        @Html.DropDownList(
-             optionLabel: "--- odaberi ---",
-             selectList: ddlGradovi,
-             name: "IDGrad",
-             htmlAttributes: new { @class = "form-control" })
-    </div>
-}
 
 
 

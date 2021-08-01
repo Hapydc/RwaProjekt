@@ -21,6 +21,8 @@ namespace RWA.Models
         public string Telefon { get; set; }
         public Town Town { get; set; }
 
+        public List<Town> Towns { get; set; }
+
         public int GradID { get; set; }
         public override string ToString()
         {

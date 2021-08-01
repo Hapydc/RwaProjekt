@@ -131,6 +131,7 @@
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerSortType.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Town.cs" />
     <Compile Include="Models\ViewModel\EditCustomerVM.cs" />
