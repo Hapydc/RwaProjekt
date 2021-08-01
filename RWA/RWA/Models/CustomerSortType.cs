@@ -7,10 +7,10 @@ namespace RWA.Models
 {
         public enum SortType
         {
-            SortByNameDesc,
-            SortByNameAsc,
-            SortBySurnameDesc,
-            SortBySurnameAsc
+            SortByNameDesc = 0,
+            SortByNameAsc = 1,
+            SortBySurnameDesc = 2,
+            SortBySurnameAsc = 3
         }
  
 }

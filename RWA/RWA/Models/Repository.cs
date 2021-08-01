@@ -22,16 +22,9 @@ namespace RWA.Models
 
             return GetCustomerFromDataRow(row);
         }
-        public static IEnumerable<Customer> GetAllCustomers()
-        {
-            ds = SqlHelper.ExecuteDataset(cs, "SelectTop50Desc");
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-                yield return GetCustomerFromDataRow(row);
-            }
-        }
 
-        public static IEnumerable<Customer> GetCustomers(int? townID, SortType? sortType, int customersPerPage, int page)
+
+        public static IEnumerable<Customer> GetCustomers(int countryID, int? townID, SortType? sortType, int customersPerPage, int page)
         {        
             switch (sortType)
             {
@@ -55,23 +48,38 @@ namespace RWA.Models
 
             if (townID==null)
             {
-                sqlTownSort = null;
+                sqlTownSort = $" where d.IDDrzava = {countryID} ";
             }
+
             else
             {
-                sqlTownSort = $" where Kupac.GradID={townID}";              
+                sqlTownSort = $" where Kupac.GradID={townID} ";              
             }
+
             var sql = ($"select  Kupac.IDKupac, Kupac.Ime,Kupac.Prezime, " +
-                                $"Kupac.Telefon,Kupac.Email,Kupac.GradID  from Kupac  " +
+                                $"Kupac.Telefon,Kupac.Email,Kupac.GradID, g.Naziv as NazivGrada, d.IDDrzava, d.Naziv as NazivDrzave from Kupac  " +
                                 $"join Grad as g on kupac.GradID = g.IDGrad join Drzava as d on d.IDDrzava = g.DrzavaID" +
                                 $"  { sqlTownSort }" +
-                                $"  order by {sqlSortType} offset {customersPerPage * page-1 } rows" +
+                                $"  order by {sqlSortType} offset {customersPerPage * (page-1) } rows" +
                                 $" fetch next { customersPerPage } rows only");
 
             var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
             var customers = new List<Customer>();
             while (result.Read())
             {
+                var country = new Country
+                {
+                    IDDrzava = (int)result["IdDrzava"],
+                    Naziv = result["NazivGrada"].ToString(),
+                };
+                var town = new Town
+                {
+                    IDGrad = (int)result["GradID"],
+                    Naziv = result["NazivDrzave"].ToString(),
+                    DrzavaID=(int)result["IDDrzava"],
+                    Country=country
+                };
+
                 customers.Add(
                     new Customer
                     {
@@ -81,11 +89,24 @@ namespace RWA.Models
                         Email = result["Email"].ToString(),
                         Telefon = result["Telefon"].ToString(),
                         GradID = result["GradID"] != DBNull.Value ? (int)result["GradID"] : 1,
+                        Town = town                      
                     }
-                    );
+                    ) ;
             }
 
             return customers;
+        }
+
+        public static Country GetCountry(int countryId)
+        {
+            DataRow row = SqlHelper.ExecuteDataset(cs, "GetCountry", countryId).Tables[0].Rows[0];
+            return new Country
+            {
+                IDDrzava = (int)row["IDDrzava"],
+                Naziv = row["Naziv"].ToString(),
+            };
+
+
         }
 
         public static IEnumerable<Customer> GetFilteredCustomers(int? townID)
@@ -107,9 +128,10 @@ namespace RWA.Models
                     yield return GetCustomerFromDataRow(row);
                 }
             }
-
         }
-        private static Customer GetCustomerFromDataRow(DataRow row)
+
+
+            private static Customer GetCustomerFromDataRow(DataRow row)
         {
             return new Customer
             {
@@ -138,7 +160,7 @@ namespace RWA.Models
             }
             return countries;
         }
-        public static Town GetTown(int townID)
+        public static Town GetTown(int? townID)
         {
 
             DataRow row = SqlHelper.ExecuteDataset(cs, "GetTown", townID).Tables[0].Rows[0];

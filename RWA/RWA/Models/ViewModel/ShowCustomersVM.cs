@@ -10,10 +10,6 @@ namespace RWA.Models.ViewModel
         public IEnumerable<Country> Countries { get; set; }
         public IEnumerable<Town> Towns { get; set; }
         public IEnumerable<Customer> Customers { get; set; }
-        public int IDCountry { get; set; }
-        public int IDTown { get; set; }
-
-
 
     }
 }

@@ -10,12 +10,25 @@ namespace RWA.Controllers
 {
     public class CustomerController : Controller
     {
-        public ActionResult Index()
+       
+        public ActionResult GetFilteredCustomers(FilterModel filterModel)
         {
-            var customers = Repository.GetCustomers(null,SortType.SortByNameAsc,25,1);
-            return View(customers);
+            if (filterModel.CustomersPerPage==0)
+            {
+                filterModel.CustomersPerPage = 10;
+            }
+            if (filterModel.Page==0)
+            {
+                filterModel.Page = 1;
+            }
+            var model = new ShowCustomersVM
+            {
+                Countries = Repository.GetCountries(),
+                Towns = Repository.GetTowns(filterModel.IDDrzava),
+                Customers = Repository.GetCustomers(filterModel.IDDrzava, filterModel.IDGrad, filterModel.SortByType, filterModel.CustomersPerPage, filterModel.Page)
+            };
+            return View(model);
         }
-
         public ActionResult SelectCountry()
         {
             var model = Repository.GetCountries();
@@ -31,30 +44,11 @@ namespace RWA.Controllers
             };
             return View(model);
         }
-
-        public ActionResult GetFilteredCustomers(Town town)
-        {  
-
-            var IdTown = town.IDGrad;
-            var idCountry = Repository.GetTown(IdTown).DrzavaID;
-            var model = new ShowCustomersVM
-            {
-                Countries = Repository.GetCountries(),
-                Towns = Repository.GetTowns(idCountry),
-                Customers = Repository.GetFilteredCustomers(IdTown),
-                IDCountry=idCountry,
-                IDTown=IdTown
-            };
-            return View(model);
-            }
-        
-
         public ActionResult GetCustomersBills(int id)
         {
             var bills = Repository.GetCustomersBills(id);
             return View(bills);
         }
-
         [HttpGet]
         public ActionResult EditCustomer(int id)
         {

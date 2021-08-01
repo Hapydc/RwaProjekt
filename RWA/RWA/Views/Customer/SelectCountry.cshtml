@@ -8,7 +8,7 @@
 <h2>Odaberite državu</h2>
 
 <div class="jumbotron">
-    @using (Html.BeginForm(controllerName: "Customer", actionName: "SelectTown"))
+    @using (Html.BeginForm(controllerName: "Customer", actionName: "GetFilteredCustomers"))
     {
         @Html.Label(expression: "IDDrzava", labelText: "Država")
         @Html.DropDownList(
