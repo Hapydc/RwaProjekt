@@ -1,8 +1,4 @@
 ﻿using RWA.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace RWA.Controllers
@@ -12,8 +8,15 @@ namespace RWA.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            var products = Repository.GetProducts();
+            var products = Repository.GetProducts();   
             return View(products);
+        }
+
+        public ActionResult EditProduct(int id)
+        {
+            var products = Repository.GetProducts();
+            Product product = products.Find(e => e.IdProizvod == id);
+            return View(product);
         }
     }
 }

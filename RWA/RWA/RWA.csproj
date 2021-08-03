@@ -139,9 +139,9 @@
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Town.cs" />
-    <Compile Include="Models\ViewModel\EditCustomerVM.cs" />
-    <Compile Include="Models\ViewModel\SelectTownVM.cs" />
-    <Compile Include="Models\ViewModel\ShowCustomersVM.cs" />
+    <Compile Include="Models\CustomerViewModel\EditCustomerVM.cs" />
+    <Compile Include="Models\CustomerViewModel\SelectTownVM.cs" />
+    <Compile Include="Models\CustomerViewModel\ShowCustomersVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebForms\EditCustomer.aspx.cs">
       <DependentUpon>EditCustomer.aspx</DependentUpon>
@@ -192,9 +192,11 @@
     <Content Include="Views\Customer\GetFilteredCustomers.cshtml" />
     <Content Include="Views\Customer\SelectTown.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\EditProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ProductViewModel\" />
     <Folder Include="Views\Bill\" />
   </ItemGroup>
   <ItemGroup>

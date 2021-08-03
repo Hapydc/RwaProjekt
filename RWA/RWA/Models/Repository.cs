@@ -25,7 +25,7 @@ namespace RWA.Models
 
 
         public static IEnumerable<Customer> GetCustomers(int countryID, int? townID, SortType? sortType, int customersPerPage, int page)
-        {        
+        {
             switch (sortType)
             {
                 case null:
@@ -46,21 +46,21 @@ namespace RWA.Models
             }
             string sqlTownSort;
 
-            if (townID==null)
+            if (townID == null)
             {
                 sqlTownSort = $" where d.IDDrzava = {countryID} ";
             }
 
             else
             {
-                sqlTownSort = $" where Kupac.GradID={townID} ";              
+                sqlTownSort = $" where Kupac.GradID={townID} ";
             }
 
             var sql = ($"select  Kupac.IDKupac, Kupac.Ime,Kupac.Prezime, " +
                                 $"Kupac.Telefon,Kupac.Email,Kupac.GradID, g.Naziv as NazivGrada, d.IDDrzava, d.Naziv as NazivDrzave from Kupac  " +
                                 $"join Grad as g on kupac.GradID = g.IDGrad join Drzava as d on d.IDDrzava = g.DrzavaID" +
                                 $"  { sqlTownSort }" +
-                                $"  order by {sqlSortType} offset {customersPerPage * (page-1) } rows" +
+                                $"  order by {sqlSortType} offset {customersPerPage * (page - 1) } rows" +
                                 $" fetch next { customersPerPage } rows only");
 
             var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
@@ -76,8 +76,8 @@ namespace RWA.Models
                 {
                     IDGrad = (int)result["GradID"],
                     Naziv = result["NazivDrzave"].ToString(),
-                    DrzavaID=(int)result["IDDrzava"],
-                    Country=country
+                    DrzavaID = (int)result["IDDrzava"],
+                    Country = country
                 };
 
                 customers.Add(
@@ -89,9 +89,9 @@ namespace RWA.Models
                         Email = result["Email"].ToString(),
                         Telefon = result["Telefon"].ToString(),
                         GradID = result["GradID"] != DBNull.Value ? (int)result["GradID"] : 1,
-                        Town = town                      
+                        Town = town
                     }
-                    ) ;
+                    );
             }
 
             return customers;
@@ -111,7 +111,7 @@ namespace RWA.Models
 
 
 
-            private static Customer GetCustomerFromDataRow(DataRow row)
+        private static Customer GetCustomerFromDataRow(DataRow row)
         {
             return new Customer
             {
@@ -125,7 +125,7 @@ namespace RWA.Models
             };
         }
 
- 
+
         public static Town GetTown(int? townID)
         {
 
@@ -188,34 +188,51 @@ namespace RWA.Models
 
         public static List<Product> GetProducts()
         {
+            SubCategory subCategory = new SubCategory();
             List<Product> products = new List<Product>();
-            var sql = $"Select p.IDProizvod,p.Naziv,p.BrojProizvoda,p.Boja,p.MinimalnaKolicinaNaSkladistu,Cast(p.CijenaBezPdv as decimal (10,2)) as CijenaBezPdv,p.PotkategorijaID " +
-                $"from Proizvod as p ";
+            var sql = ($"Select p.IDProizvod,p.Naziv,p.BrojProizvoda,p.Boja,p.MinimalnaKolicinaNaSkladistu,Cast(p.CijenaBezPdv as decimal (10,2)) as CijenaBezPdv,p.PotkategorijaID,pk.IDPotkategorija,pk.Naziv as PotKategorija" +
+                $" from Proizvod as p left join Potkategorija as pk on p.PotkategorijaID=pk.IDPotkategorija");
             var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
             while (result.Read())
-            {              
-                    products.Add(new Product
+            {
+                if (result["IDPotkategorija"] ==DBNull.Value)
+                {
+                    subCategory= null;
+                }
+                else
+                {
+                     subCategory = new SubCategory
                     {
-                        IdProizvod = (int)result["IDProizvod"],
-                        Naziv = result["Naziv"].ToString(),
-                        BrojProizvoda =result["BrojProizvoda"].ToString(),                                             
-                        Boja = result["Boja"] == DBNull.Value ? null : result["Boja"].ToString(),
-                        MinKolicinaNaSkladistu = (short)result["MinimalnaKolicinaNaSkladistu"],
-                        CijenaBezPdva =(decimal)result["CijenaBezPdv"],
-                        PotKategorijaID = result["PotkategorijaID"] == DBNull.Value ? null : (int?)result["PotkategorijaID"]
-                    });               
-            }
+
+                        IDPotKategorija = (int)result["IDPotkategorija"],
+                        Naziv = result["Potkategorija"].ToString()
+                    };
+                   
+                }
+        
+            products.Add(new Product
+            {
+                IdProizvod = (int)result["IDProizvod"],
+                Naziv = result["Naziv"].ToString(),
+                BrojProizvoda = result["BrojProizvoda"].ToString(),
+                Boja = result["Boja"] == DBNull.Value ? null : result["Boja"].ToString(),
+                MinKolicinaNaSkladistu = (short)result["MinimalnaKolicinaNaSkladistu"],
+                CijenaBezPdva = (decimal)result["CijenaBezPdv"],
+                PotKategorijaID = result["PotkategorijaID"] == DBNull.Value ? null : (int?)result["PotkategorijaID"],
+                Subcategory = subCategory
+            });
+            };
             return products;
         }
-        public static Bill GetBillFromDataRow(DataRow row)
+    public static Bill GetBillFromDataRow(DataRow row)
+    {
+        return new Bill
         {
-            return new Bill
-            {
-                IDRacun = (int)row["IdRacun"],
-                BrojRacuna = row["BrojRacuna"].ToString(),
-                DatumIzdavanja = (DateTime)row["DatumIzdavanja"],
-                Komentar = row["Komentar"].ToString()
-            };
-        }
+            IDRacun = (int)row["IdRacun"],
+            BrojRacuna = row["BrojRacuna"].ToString(),
+            DatumIzdavanja = (DateTime)row["DatumIzdavanja"],
+            Komentar = row["Komentar"].ToString()
+        };
     }
+}
 }

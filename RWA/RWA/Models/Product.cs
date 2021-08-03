@@ -14,5 +14,6 @@ namespace RWA.Models
         public short MinKolicinaNaSkladistu { get; set; }
         public decimal CijenaBezPdva { get; set; }
         public int? PotKategorijaID { get; set; }
+        public SubCategory Subcategory { get; set; }
     }
 }

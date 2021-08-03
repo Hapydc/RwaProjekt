@@ -4,11 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Proizvodi</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -30,7 +28,7 @@
             @Html.DisplayNameFor(model => model.CijenaBezPdva)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PotKategorijaID)
+            @Html.DisplayNameFor(model => model.Subcategory.Naziv)
         </th>
         <th></th>
     </tr>
@@ -56,10 +54,10 @@
             @Html.DisplayFor(modelItem => item.CijenaBezPdva)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PotKategorijaID)
+            @Html.DisplayFor(modelItem => item.Subcategory.Naziv)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Uredi", "EditProduct", new { id=item.IdProizvod }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>

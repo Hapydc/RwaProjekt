@@ -7,7 +7,7 @@ namespace RWA.Models
 {
     public class SubCategory
     {
-        public int IDPotKategorija { get; set; }
+        public int? IDPotKategorija { get; set; }
         public string Naziv { get; set; }
         public int KategorijaID { get; set; }
 
