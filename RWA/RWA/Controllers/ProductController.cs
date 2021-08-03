@@ -23,9 +23,24 @@ namespace RWA.Controllers
         [HttpPost]
         public ActionResult EditProduct(Product product)
         {
-            var Product = product;
             Repository.UpdateProduct(product);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult InsertProduct()
+        {
+            Product product = new Product();
+            return View(product);
+
+        }
+
+        [HttpPost]
+        public ActionResult InsertProduct(Product product)
+        {
+            Repository.InsertProduct(product);
+            return RedirectToAction("Index");
+
         }
     }
 }
