@@ -13,6 +13,6 @@ namespace RWA.Models
         public string Boja { get; set; }
         public short MinKolicinaNaSkladistu { get; set; }
         public decimal CijenaBezPdva { get; set; }
-        public int PotKategorijaID { get; set; }
+        public int? PotKategorijaID { get; set; }
     }
 }

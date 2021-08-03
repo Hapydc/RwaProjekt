@@ -198,12 +198,12 @@ namespace RWA.Models
                     {
                         IdProizvod = (int)result["IDProizvod"],
                         Naziv = result["Naziv"].ToString(),
-                        BrojProizvoda = result["BrojProizvoda"].ToString(),                                             
-                        Boja = result["Boja"].ToString()??" ",
+                        BrojProizvoda =result["BrojProizvoda"].ToString(),                                             
+                        Boja = result["Boja"] == DBNull.Value ? null : result["Boja"].ToString(),
                         MinKolicinaNaSkladistu = (short)result["MinimalnaKolicinaNaSkladistu"],
                         CijenaBezPdva =(decimal)result["CijenaBezPdv"],
-                        PotKategorijaID = (int)result["PotkategorijaID"]
-                    });  
+                        PotKategorijaID = result["PotkategorijaID"] == DBNull.Value ? null : (int?)result["PotkategorijaID"]
+                    });               
             }
             return products;
         }
