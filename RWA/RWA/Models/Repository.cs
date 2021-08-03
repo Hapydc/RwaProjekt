@@ -233,7 +233,13 @@ namespace RWA.Models
         {
             SqlHelper.ExecuteNonQuery(cs, "InsertProduct", product.Naziv, product.BrojProizvoda, product.Boja, product.MinKolicinaNaSkladistu, product.CijenaBezPdva, product.PotKategorijaID);
         }
-    public static Bill GetBillFromDataRow(DataRow row)
+
+        public static void DeleteProduct(int id )
+        {
+            SqlHelper.ExecuteNonQuery(cs, "DeleteProduct", id);
+        }
+
+        public static Bill GetBillFromDataRow(DataRow row)
     {
         return new Bill
         {

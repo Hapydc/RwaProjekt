@@ -42,5 +42,11 @@ namespace RWA.Controllers
             return RedirectToAction("Index");
 
         }
+          
+        public ActionResult DeleteProduct(int id)
+        {
+            Repository.DeleteProduct(id);
+            return RedirectToAction("Index");
+        }
     }
 }

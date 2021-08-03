@@ -59,7 +59,7 @@
         <td>
             @Html.ActionLink("Uredi", "EditProduct", new { id=item.IdProizvod }) |
             @Html.ActionLink("Kreiraj proizvod", "InsertProduct", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Obrisi", "DeleteProduct", new { id=item.IdProizvod })
         </td>
     </tr>
 }
