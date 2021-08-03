@@ -195,38 +195,38 @@ namespace RWA.Models
             var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
             while (result.Read())
             {
-                if (result["IDPotkategorija"] ==DBNull.Value)
+                if (result["IDPotkategorija"] == DBNull.Value)
                 {
-                    subCategory= null;
+                    subCategory = null;
                 }
                 else
                 {
-                     subCategory = new SubCategory
+                    subCategory = new SubCategory
                     {
 
                         IDPotKategorija = (int)result["IDPotkategorija"],
                         Naziv = result["Potkategorija"].ToString()
                     };
-                   
+
                 }
-        
-            products.Add(new Product
-            {
-                IdProizvod = (int)result["IDProizvod"],
-                Naziv = result["Naziv"].ToString(),
-                BrojProizvoda = result["BrojProizvoda"].ToString(),
-                Boja = result["Boja"] == DBNull.Value ? null : result["Boja"].ToString(),
-                MinKolicinaNaSkladistu = (short)result["MinimalnaKolicinaNaSkladistu"],
-                CijenaBezPdva = (decimal)result["CijenaBezPdv"],
-                PotKategorijaID = result["PotkategorijaID"] == DBNull.Value ? null : (int?)result["PotkategorijaID"],
-                Subcategory = subCategory
-            });
+
+                products.Add(new Product
+                {
+                    IdProizvod = (int)result["IDProizvod"],
+                    Naziv = result["Naziv"].ToString(),
+                    BrojProizvoda = result["BrojProizvoda"].ToString(),
+                    Boja = result["Boja"] == DBNull.Value ? null : result["Boja"].ToString(),
+                    MinKolicinaNaSkladistu = (short)result["MinimalnaKolicinaNaSkladistu"],
+                    CijenaBezPdva = (decimal)result["CijenaBezPdv"],
+                    PotKategorijaID = result["PotkategorijaID"] == DBNull.Value ? null : (int?)result["PotkategorijaID"],
+                    Subcategory = subCategory
+                });
             };
             return products;
         }
         public static void UpdateProduct(Product product)
         {
-            SqlHelper.ExecuteNonQuery(cs, "UpdateProduct", product.IdProizvod, product.Naziv, product.BrojProizvoda, product.Boja, product.MinKolicinaNaSkladistu, product.CijenaBezPdva, product.PotKategorijaID );
+            SqlHelper.ExecuteNonQuery(cs, "UpdateProduct", product.IdProizvod, product.Naziv, product.BrojProizvoda, product.Boja, product.MinKolicinaNaSkladistu, product.CijenaBezPdva, product.PotKategorijaID);
 
         }
         public static void InsertProduct(Product product)
@@ -234,20 +234,55 @@ namespace RWA.Models
             SqlHelper.ExecuteNonQuery(cs, "InsertProduct", product.Naziv, product.BrojProizvoda, product.Boja, product.MinKolicinaNaSkladistu, product.CijenaBezPdva, product.PotKategorijaID);
         }
 
-        public static void DeleteProduct(int id )
+        public static void DeleteProduct(int id)
         {
             SqlHelper.ExecuteNonQuery(cs, "DeleteProduct", id);
         }
 
-        public static Bill GetBillFromDataRow(DataRow row)
-    {
-        return new Bill
+        public static List<Category> GetCategories()
         {
-            IDRacun = (int)row["IdRacun"],
-            BrojRacuna = row["BrojRacuna"].ToString(),
-            DatumIzdavanja = (DateTime)row["DatumIzdavanja"],
-            Komentar = row["Komentar"].ToString()
-        };
+            List<Category> categories = new List<Category>();
+            var sql = $"Select* from Kategorija";
+            var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
+            while (result.Read())
+            {
+                categories.Add(new Category
+                {
+                    IDKategorija = (int)result["IDKategorija"],
+                    Naziv = result["Naziv"].ToString()
+
+                });
+
+            }
+            return categories;
+
+
+        }
+
+        public static void UpdateCategory(Category category)
+        {
+            SqlHelper.ExecuteNonQuery(cs, "UpdateCategory", category.IDKategorija, category.Naziv);
+
+        }
+        public static void InsertCategory(Category category)
+        {
+            SqlHelper.ExecuteNonQuery(cs, "InsertCategory", category.Naziv);
+        }
+
+        public static void DeleteCategory(int id)
+        {
+            SqlHelper.ExecuteNonQuery(cs, "DeleteCategory", id);
+        }
+
+        public static Bill GetBillFromDataRow(DataRow row)
+        {
+            return new Bill
+            {
+                IDRacun = (int)row["IdRacun"],
+                BrojRacuna = row["BrojRacuna"].ToString(),
+                DatumIzdavanja = (DateTime)row["DatumIzdavanja"],
+                Komentar = row["Komentar"].ToString()
+            };
+        }
     }
-}
 }
