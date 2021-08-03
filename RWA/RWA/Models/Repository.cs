@@ -109,26 +109,6 @@ namespace RWA.Models
 
         }
 
-        public static IEnumerable<Customer> GetFilteredCustomers(int? townID)
-        {
-            if (townID == null)
-            {
-                ds = SqlHelper.ExecuteDataset(cs, "SelectTop50Desc");
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    yield return GetCustomerFromDataRow(row);
-                }
-            }
-            else
-            {
-
-                ds = SqlHelper.ExecuteDataset(cs, "GetFilteredCustomers", townID);
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    yield return GetCustomerFromDataRow(row);
-                }
-            }
-        }
 
 
             private static Customer GetCustomerFromDataRow(DataRow row)
@@ -145,21 +125,7 @@ namespace RWA.Models
             };
         }
 
-        public static List<Country> GetCountries()
-        {
-
-            List<Country> countries = new List<Country>();
-            DataSet ds = SqlHelper.ExecuteDataset(cs, "GetCountries");
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-                countries.Add(new Country
-                {
-                    IDDrzava = (int)row["IDDrzava"],
-                    Naziv = row["Naziv"].ToString(),
-                });
-            }
-            return countries;
-        }
+ 
         public static Town GetTown(int? townID)
         {
 
@@ -193,7 +159,6 @@ namespace RWA.Models
         public static Bill GetCustomerBill(int customerID)
         {
             DataRow row = SqlHelper.ExecuteDataset(cs, "GetCustomerBill", customerID).Tables[0].Rows[0];
-
             return GetBillFromDataRow(row);
         }
         public static IEnumerable<Bill> GetCustomersBills(int id)
@@ -205,7 +170,44 @@ namespace RWA.Models
             }
 
         }
+        public static List<Country> GetCountries()
+        {
 
+            List<Country> countries = new List<Country>();
+            DataSet ds = SqlHelper.ExecuteDataset(cs, "GetCountries");
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                countries.Add(new Country
+                {
+                    IDDrzava = (int)row["IDDrzava"],
+                    Naziv = row["Naziv"].ToString(),
+                });
+            }
+            return countries;
+        }
+
+        public static List<Product> GetProducts()
+        {
+            List<Product> products = new List<Product>();
+            var sql = $"Select p.IDProizvod,p.Naziv,p.BrojProizvoda,p.Boja,p.MinimalnaKolicinaNaSkladistu,Cast(p.CijenaBezPdv as decimal (10,2)) as CijenaBezPdv,p.PotkategorijaID " +
+                $"from Proizvod as p where p.IDProizvod=783";
+            var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
+            while (result.Read())
+            {              
+                    products.Add(new Product
+                    {
+                        IdProizvod = (int)result["IDProizvod"],
+                        Naziv = result["Naziv"].ToString(),
+                        BrojProizvoda = result["BrojProizvoda"].ToString(),                      
+                        if (result["Boja"].ToString()==DBNull.Value)return null,
+                        Boja = result["Boja"].ToString(),
+                        MinKolicinaNaSkladistu = (short)result["MinimalnaKolicinaNaSkladistu"],
+                        CijenaBezPdva =Convert.ToDecimal(result["CijenaBezPdv"]),
+                        PotKategorijaID = (int)result["PotkategorijaID"]
+                    });  
+            }
+            return products;
+        }
         public static Bill GetBillFromDataRow(DataRow row)
         {
             return new Bill

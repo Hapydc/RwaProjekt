@@ -35,6 +35,8 @@ namespace RWA.Controllers
             return View(model);
         }
 
+
+
         public ActionResult SelectTown(Country country)
         {
             var model = new SelectTownVM
@@ -71,6 +73,13 @@ namespace RWA.Controllers
             customer.Ime = "Ivica";
             Repository.UpdateCustomer(customer);
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult GetProducts()
+        {
+            var products = Repository.GetProducts();
+            return View(products);
         }
 
     }
