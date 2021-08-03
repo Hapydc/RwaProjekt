@@ -190,7 +190,7 @@ namespace RWA.Models
         {
             List<Product> products = new List<Product>();
             var sql = $"Select p.IDProizvod,p.Naziv,p.BrojProizvoda,p.Boja,p.MinimalnaKolicinaNaSkladistu,Cast(p.CijenaBezPdv as decimal (10,2)) as CijenaBezPdv,p.PotkategorijaID " +
-                $"from Proizvod as p where p.IDProizvod=783";
+                $"from Proizvod as p ";
             var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
             while (result.Read())
             {              
@@ -198,11 +198,10 @@ namespace RWA.Models
                     {
                         IdProizvod = (int)result["IDProizvod"],
                         Naziv = result["Naziv"].ToString(),
-                        BrojProizvoda = result["BrojProizvoda"].ToString(),                      
-                        if (result["Boja"].ToString()==DBNull.Value)return null,
-                        Boja = result["Boja"].ToString(),
+                        BrojProizvoda = result["BrojProizvoda"].ToString(),                                             
+                        Boja = result["Boja"].ToString()??" ",
                         MinKolicinaNaSkladistu = (short)result["MinimalnaKolicinaNaSkladistu"],
-                        CijenaBezPdva =Convert.ToDecimal(result["CijenaBezPdv"]),
+                        CijenaBezPdva =(decimal)result["CijenaBezPdv"],
                         PotKategorijaID = (int)result["PotkategorijaID"]
                     });  
             }
