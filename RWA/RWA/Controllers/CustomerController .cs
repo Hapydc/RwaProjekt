@@ -11,6 +11,12 @@ namespace RWA.Controllers
     public class CustomerController : Controller
     {
        
+
+        public ActionResult Index()
+        {
+            var model = Repository.GetCountries();
+            return View(model);
+        }
         public ActionResult GetFilteredCustomers(FilterModel filterModel)
         {
             if (filterModel.CustomersPerPage==0)
@@ -29,14 +35,6 @@ namespace RWA.Controllers
             };
             return View(model);
         }
-        public ActionResult SelectCountry()
-        {
-            var model = Repository.GetCountries();
-            return View(model);
-        }
-
-
-
         public ActionResult SelectTown(Country country)
         {
             var model = new SelectTownVM
@@ -73,13 +71,6 @@ namespace RWA.Controllers
             customer.Ime = "Ivica";
             Repository.UpdateCustomer(customer);
             return RedirectToAction("Index");
-        }
-
-
-        public ActionResult GetProducts()
-        {
-            var products = Repository.GetProducts();
-            return View(products);
         }
 
     }

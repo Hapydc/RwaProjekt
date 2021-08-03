@@ -125,6 +125,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerController .cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,9 +190,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\GetCustomersBills.cshtml" />
     <Content Include="Views\Customer\GetFilteredCustomers.cshtml" />
-    <Content Include="Views\Customer\SelectCountry.cshtml" />
     <Content Include="Views\Customer\SelectTown.cshtml" />
-    <Content Include="Views\Customer\GetProducts.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
