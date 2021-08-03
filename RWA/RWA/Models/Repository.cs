@@ -224,6 +224,11 @@ namespace RWA.Models
             };
             return products;
         }
+        public static void UpdateProduct(Product product)
+        {
+            SqlHelper.ExecuteNonQuery(cs, "UpdateProduct", product.IdProizvod, product.Naziv, product.BrojProizvoda, product.Boja, product.MinKolicinaNaSkladistu, product.CijenaBezPdva, product.PotKategorijaID );
+
+        }
     public static Bill GetBillFromDataRow(DataRow row)
     {
         return new Bill
