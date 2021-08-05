@@ -49,11 +49,7 @@
                 <option value="25"> 25 </option>
                 <option value="50"> 50 </option>
             </select>
-
-
         }
-
-
         <table class="table table-sm table-striped bg-info">
             <thead>
                 <tr>
@@ -79,7 +75,9 @@
                         <td>@k.Town.Naziv</td>
                         <td>@k.Town.Country.Naziv</td>
                         <td>
-                            @Html.ActionLink("Uredi", "EditCustomer", new { id = k.IDKupac }) |
+                            @Html.ActionLink("Uredi", "EditCustomer", new { }) |
+                            @Html.ActionLink("Prikaži račune", "GetCustomersBills", new { id = k.IDKupac }) |
+
                         </td>
                     </tr>
                 }

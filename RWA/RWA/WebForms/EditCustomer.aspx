@@ -10,11 +10,11 @@
     <form id="form1" runat="server">
         <div class="form-control">
             <input runat="server" type="text" id="firstName"/>
-                    
-        
+                           
             <input runat="server" type="text" id="lastName" />
             <input runat="server" type="text" id="phone" />
             <input runat="server" type="text" id="email" />     
+            <asp:DropDownList id="dlTowns" runat="server"></asp:DropDownList>
            </div> 
 
     </form>

@@ -139,6 +139,7 @@
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Repository.cs" />
+    <Compile Include="Models\Stavka.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Town.cs" />
     <Compile Include="Models\CustomerViewModel\EditCustomerVM.cs" />
@@ -202,6 +203,7 @@
     <Content Include="Views\SubCategory\Index.cshtml" />
     <Content Include="Views\SubCategory\EditSubCategory.cshtml" />
     <Content Include="Views\SubCategory\InsertSubCategory.cshtml" />
+    <Content Include="Views\Customer\ShowStavke.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

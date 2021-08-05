@@ -50,17 +50,9 @@ namespace RWA.Controllers
             return View(bills);
         }
         [HttpGet]
-        public ActionResult EditCustomer(int id)
+        public ActionResult EditCustomer()
         {
-            Customer c = Repository.GetCustomer(id);
-            var customer = new EditCustomerVM
-            {
-                Customer = c,
-                Towns = Repository.GetTowns(1),
-                TownID = c.GradID
-
-            };
-            return View(customer);
+            return Redirect(Server.MapPath("~/WebForms/EditCustomer.aspx"));
         }
 
         [HttpPost]
@@ -71,6 +63,11 @@ namespace RWA.Controllers
             customer.Ime = "Ivica";
             Repository.UpdateCustomer(customer);
             return RedirectToAction("Index");
+        }
+        public ActionResult ShowStavke(int id)
+        {
+            var stavke = Repository.GetStavke(id);
+            return View(stavke);
         }
 
     }

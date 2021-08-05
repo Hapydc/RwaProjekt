@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RWA.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,19 @@ namespace RWA.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            int id;
+            var customer = Repository.GetCustomer(1);
+            firstName.Value = customer.Ime;
+            lastName.Value = customer.Prezime;
+            email.Value = customer.Email;
+            phone.Value = customer.Telefon;
+            var towns = Repository.GetTowns(customer.Town.Country.IDDrzava);
+            foreach (var item in towns)
+            {
+                dlTowns.Items.Add(item.Naziv);
+            }
+
 
         }
     }

@@ -371,6 +371,40 @@ namespace RWA.Models
             }
             return subCategory;
         }
+
+        public static List<Stavka> GetStavke(int id)
+        {
+            Product product = new Product();
+            List<Stavka> stavke = new List<Stavka>();
+            var sql = $"select s.IDStavka,s.RacunID,s.Kolicina,s.ProizvodID,Cast(s.PopustUPostocima as decimal (10,2)) as PopustUPostocima," +
+                $"Cast(CijenaPoKomadu as decimal (10,2)) as CijenaPoKomadu,Cast(s.UkupnaCijena as decimal (38,6)) as UkupnaCijena," +
+                $"p.IDProizvod,p.Naziv from Stavka as s inner join Proizvod as p on s.ProizvodID = IDProizvod where RacunID ={id}";
+            var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
+            while (result.Read())
+            {
+                product = new Product
+                {
+                    IdProizvod = (int)result["IDProizvod"],
+                    Naziv=result["Naziv"].ToString()
+
+                };
+                stavke.Add(new Stavka
+                {
+                    IDStavka = (int)result["IDStavka"],
+                    RacunID = (int)result["RacunID"],
+                    Kolicina = (short)result["Kolicina"],
+                    ProizvodID = (int)result["ProizvodID"],
+                    PopustUPostocima = (decimal)result["PopustUPostocima"],
+                    CijenaPoKomadu = (decimal)result["CijenaPoKomadu"],
+                    UkupnaCijena = (decimal)result["UkupnaCijena"],
+                    Product = product
+                }) ;
+
+                
+            }
+            return stavke;
+        }
+
         public static void UpdateSubCategory(SubCategory subCategory)
         {
             SqlHelper.ExecuteNonQuery(cs, "UpdateSubCategory", subCategory.IDPotKategorija, subCategory.Naziv,subCategory.KategorijaID);

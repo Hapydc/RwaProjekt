@@ -43,8 +43,6 @@ namespace RWA.Controllers
             
                 Repository.InsertProduct(product);
                 return RedirectToAction("Index");
-                     
-
         }
           
         public ActionResult DeleteProduct(int id)
@@ -52,5 +50,6 @@ namespace RWA.Controllers
             Repository.DeleteProduct(id);
             return RedirectToAction("Index");
         }
+
     }
 }
