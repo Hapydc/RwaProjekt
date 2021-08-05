@@ -16,15 +16,17 @@ namespace RWA.Controllers
         [HttpGet]
         public ActionResult EditProduct(int id)
         {
-            var products = Repository.GetProducts();
-            Product product = products.Find(e => e.IdProizvod == id);
+            var product = Repository.GetProduct(id);
             return View(product);
         }
         [HttpPost]
         public ActionResult EditProduct(Product product)
         {
-            Repository.UpdateProduct(product);
-            return RedirectToAction("Index");
+            
+                Repository.UpdateProduct(product);
+                return RedirectToAction("Index");
+            
+            //return EditProduct(product);
         }
 
         [HttpGet]
@@ -38,8 +40,10 @@ namespace RWA.Controllers
         [HttpPost]
         public ActionResult InsertProduct(Product product)
         {
-            Repository.InsertProduct(product);
-            return RedirectToAction("Index");
+            
+                Repository.InsertProduct(product);
+                return RedirectToAction("Index");
+                     
 
         }
           

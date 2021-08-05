@@ -5,63 +5,64 @@
 }
 
 <h2>Proizvodi</h2>
-
-
+<p>
+    @Html.ActionLink("Kreiraj", "InsertProduct", new { /* id=item.PrimaryKey */ }) 
+</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IdProizvod)
+            ID Proizvoda
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Naziv)
+            Naziv
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BrojProizvoda)
+            Broj proizvoda
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Boja)
+            Boja
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MinKolicinaNaSkladistu)
+            Minimalna količina na skladištu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CijenaBezPdva)
+            Cijena bez pdv-a
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Subcategory.Naziv)
+            Naziv potkategorije
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdProizvod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Naziv)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BrojProizvoda)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Boja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MinKolicinaNaSkladistu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CijenaBezPdva)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subcategory.Naziv)
-        </td>
-        <td>
-            @Html.ActionLink("Uredi", "EditProduct", new { id=item.IdProizvod }) |
-            @Html.ActionLink("Kreiraj proizvod", "InsertProduct", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Obriši", "DeleteProduct", new { id=item.IdProizvod })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProizvod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojProizvoda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Boja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinKolicinaNaSkladistu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CijenaBezPdva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subcategory.Naziv)
+            </td>
+            <td>
+                @Html.ActionLink("Uredi", "EditProduct", new { id = item.IdProizvod }) 
+                @Html.ActionLink("Obriši", "DeleteProduct", new { id = item.IdProizvod })
+            </td>
+        </tr>
+    }
 
 </table>

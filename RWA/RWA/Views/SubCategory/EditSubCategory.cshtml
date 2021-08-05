@@ -1,21 +1,21 @@
-﻿@model RWA.Models.Category
+﻿@model RWA.Models.SubCategory
 
 @{
-    ViewBag.Title = "EditCategory";
+    ViewBag.Title = "EditSubCategory";
 }
 
-<h2>Uredite kategoriju</h2>
+<h2>Uredite potkategoriju</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+
         <hr />
-        
-        <div class="form-group">          
+        <div class="form-group">
             <div class="col-md-10">
-                @Html.HiddenFor(model => model.IDKategorija, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.IDPotKategorija, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
@@ -24,6 +24,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KategorijaID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KategorijaID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KategorijaID, "", new { @class = "text-danger" })
             </div>
         </div>
 

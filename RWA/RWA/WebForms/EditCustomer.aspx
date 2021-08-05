@@ -4,17 +4,18 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title> Uredite kupca </title>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="form-control">
-            <input type="text" id="firstName"/>
-                    </div>
+            <input runat="server" type="text" id="firstName"/>
+                    
         
-            <input type="text" id="lastName" />
-            <input type="text" id="phone" />
-            <input type="text" id="email" />     
+            <input runat="server" type="text" id="lastName" />
+            <input runat="server" type="text" id="phone" />
+            <input runat="server" type="text" id="email" />     
+           </div> 
 
     </form>
 </body>

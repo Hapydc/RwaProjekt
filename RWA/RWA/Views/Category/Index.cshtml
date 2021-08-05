@@ -7,15 +7,15 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Kreiraj", "InsertCategory", new { /* id=item.PrimaryKey */ }) 
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IDKategorija)
+            ID Kategorije
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Naziv)
+           Naziv
         </th>
         <th></th>
     </tr>
@@ -29,8 +29,7 @@
             @Html.DisplayFor(modelItem => item.Naziv)
         </td>
         <td>
-            @Html.ActionLink("Uredi", "EditCategory", new { id = item.IDKategorija }) |
-            @Html.ActionLink("Kreiraj", "InsertCategory", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Uredi", "EditCategory", new { id = item.IDKategorija })      
             @Html.ActionLink("Obriši", "DeleteCategory", new { id=item.IDKategorija })
         </td>
     </tr>
