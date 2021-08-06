@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RWA.Models
 {
@@ -10,7 +6,9 @@ namespace RWA.Models
     {
         
         public int IDKategorija { get; set; }
-        [Required]
+
+        [Display(Name = "Naziv")]
+        [Required(ErrorMessage = "Naziv je obvezan")]
         public string Naziv { get; set; }
 
     }

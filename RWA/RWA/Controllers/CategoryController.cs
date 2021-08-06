@@ -47,7 +47,7 @@ namespace RWA.Controllers
                 Repository.InsertCategory(category);
                 return RedirectToAction("Index");
             }
-            return InsertCategory(category);
+            return View(category);
 
         }
 
