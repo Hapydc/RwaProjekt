@@ -14,6 +14,7 @@ namespace RWA.Models
         public static DataSet ds { get; set; }
         private static string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         private static string sqlSortType;
+        private static int number;
 
 
         public static Customer GetCustomer(int idKupac)
@@ -23,7 +24,20 @@ namespace RWA.Models
             return GetCustomerFromDataRow(row);
         }
 
+        public static int GetNumberOfCustomersInBase()
+        {
+            
+            var sql = $"select count(*) as brojKupaca from Kupac ";
+            var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
+            
+            while (result.Read())
+            {
+                 number = (int)result["brojKupaca"];
+            };
+            return number;
 
+
+        }
         public static IEnumerable<Customer> GetCustomers(int countryID, int? townID, SortType? sortType, int customersPerPage, int page)
         {
             switch (sortType)
@@ -419,6 +433,7 @@ namespace RWA.Models
         {
             SqlHelper.ExecuteNonQuery(cs, "DeleteSubCategory", id);
         }
+
 
 
 

@@ -13,7 +13,6 @@ namespace RWA.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            int id;
             var customer = Repository.GetCustomer(1);
             firstName.Value = customer.Ime;
             lastName.Value = customer.Prezime;

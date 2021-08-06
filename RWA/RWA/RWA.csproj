@@ -141,6 +141,7 @@
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Stavka.cs" />
     <Compile Include="Models\SubCategory.cs" />
+    <Compile Include="Models\SubCategoryViewModel\SubCategoryVM.cs" />
     <Compile Include="Models\Town.cs" />
     <Compile Include="Models\CustomerViewModel\EditCustomerVM.cs" />
     <Compile Include="Models\CustomerViewModel\SelectTownVM.cs" />

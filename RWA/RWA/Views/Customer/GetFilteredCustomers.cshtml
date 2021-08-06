@@ -50,6 +50,10 @@
                 <option value="50"> 50 </option>
             </select>
         }
+        @*@foreach(var k in Model.Pages)
+        {
+            @Html.Label(expression:"idPages",labelText:k.ToString())
+        }*@
         <table class="table table-sm table-striped bg-info">
             <thead>
                 <tr>

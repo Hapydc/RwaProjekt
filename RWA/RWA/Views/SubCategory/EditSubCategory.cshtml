@@ -1,7 +1,12 @@
-﻿@model RWA.Models.SubCategory
+﻿@model RWA.Models.SubCategoryViewModel.SubCategoryVM
 
 @{
     ViewBag.Title = "EditSubCategory";
+
+    SelectList ddlCategories = new SelectList(
+  items: Model.categories,
+  dataTextField: "Naziv",
+  dataValueField: "IDKategorija");
 }
 
 <h2>Uredite potkategoriju</h2>
@@ -10,39 +15,42 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        <hr />
-        <div class="form-group">
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.IDPotKategorija, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.KategorijaID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.KategorijaID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.KategorijaID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.subcategory.IDPotKategorija, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.subcategory.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.subcategory.Naziv, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.subcategory.Naziv, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label(expression: "IDKategorija", labelText: "Kategorija")
+        @Html.DropDownList(
+            optionLabel: "--- odaberi ---",
+            selectList: ddlCategories,
+            name: "IDKategorija",
+            htmlAttributes: new { @class = "form-control" })
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Spremi promjene" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Natrag na listu potkategorija", "Index")
 </div>

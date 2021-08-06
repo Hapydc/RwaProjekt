@@ -1,4 +1,5 @@
 ﻿using RWA.Models;
+using RWA.Models.SubCategoryViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace RWA.Controllers
         // GET: SubCategory
         public ActionResult Index()
         {
-            var subcategories = Repository.GetSubCategories();
+            var subcategories = Repository.GetSubCategories();   
             return View(subcategories);
         }
 
@@ -20,7 +21,12 @@ namespace RWA.Controllers
         [HttpGet]
         public ActionResult EditSubCategory(int id)
         {
-            var subCategory = Repository.GetSubCategory(id);
+
+            var subCategory = new SubCategoryVM
+            {
+                subcategory = Repository.GetSubCategory(id),
+                categories = Repository.GetCategories()
+            };
             return View(subCategory);
 
         }

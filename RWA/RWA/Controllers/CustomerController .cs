@@ -8,9 +8,10 @@ using System.Web.Mvc;
 
 namespace RWA.Controllers
 {
+
+    
     public class CustomerController : Controller
     {
-       
 
         public ActionResult Index()
         {
@@ -33,6 +34,15 @@ namespace RWA.Controllers
                 Towns = Repository.GetTowns(filterModel.IDDrzava),
                 Customers = Repository.GetCustomers(filterModel.IDDrzava, filterModel.IDGrad, filterModel.SortByType, filterModel.CustomersPerPage, filterModel.Page)
             };
+
+            //int pages = allCustomers / filterModel.CustomersPerPage;
+
+            //for (int i = 1; i <= pages; i++)
+            //{
+            //    model.Pages.Add(i);
+
+            //}
+
             return View(model);
         }
         public ActionResult SelectTown(Country country)

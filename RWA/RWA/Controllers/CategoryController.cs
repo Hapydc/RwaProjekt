@@ -22,13 +22,20 @@ namespace RWA.Controllers
         {
             var category = Repository.GetCategory(id);           
             return View(category);
-
         }
         [HttpPost]
         public ActionResult EditCategory(Category category)
         {
-            Repository.UpdateCategory(category);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                Repository.UpdateCategory(category);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("EditCategory");
+            }           
+            
         }
 
         [HttpGet]
@@ -47,7 +54,10 @@ namespace RWA.Controllers
                 Repository.InsertCategory(category);
                 return RedirectToAction("Index");
             }
-            return InsertCategory(category);
+            else
+            {
+                return RedirectToAction("InsertCategory");
+            }
 
         }
 

@@ -11,5 +11,7 @@ namespace RWA.Models.ViewModel
         public IEnumerable<Town> Towns { get; set; }
         public IEnumerable<Customer> Customers { get; set; }
 
+        public List<int> Pages { get; set; }
+
     }
 }

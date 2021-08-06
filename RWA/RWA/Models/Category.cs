@@ -10,7 +10,7 @@ namespace RWA.Models
     {
         
         public int IDKategorija { get; set; }
-        [Required]
+        [Required (ErrorMessage="Molimo unesite ispravan naziv")]
         public string Naziv { get; set; }
 
     }
