@@ -60,9 +60,10 @@ namespace RWA.Controllers
             return View(bills);
         }
         [HttpGet]
-        public ActionResult EditCustomer()
+        public ActionResult EditCustomer(int id)
         {
-            return Redirect(Server.MapPath("~/WebForms/EditCustomer.aspx"));
+            Session["CustomerID"] = id;
+            return View();
         }
 
         [HttpPost]

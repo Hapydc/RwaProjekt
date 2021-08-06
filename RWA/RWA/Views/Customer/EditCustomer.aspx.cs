@@ -8,23 +8,20 @@ using System.Web.UI.WebControls;
 
 namespace RWA.WebForms
 {
-    public partial class EditCustomer : System.Web.UI.Page
+    public partial class EditCustomer : System.Web.Mvc.ViewPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            var customer = Repository.GetCustomer(1);
+            var customer = Repository.GetCustomer((int)Session["CustomerID"]);
             firstName.Value = customer.Ime;
             lastName.Value = customer.Prezime;
             email.Value = customer.Email;
             phone.Value = customer.Telefon;
-            var towns = Repository.GetTowns(customer.Town.Country.IDDrzava);
+            var towns = Repository.GetTowns(1);
             foreach (var item in towns)
             {
                 dlTowns.Items.Add(item.Naziv);
             }
-
-
         }
     }
 }

@@ -12,7 +12,6 @@
         dataTextField: "Naziv",
         dataValueField: "IDDrzava");
 }
-
     <div class="jumbotron">
         @using (Html.BeginForm(controllerName: "Customer", actionName: "GetFilteredCustomers", htmlAttributes: new { id = "formCustomer" }, routeValues: null, method: FormMethod.Post))
         {
@@ -24,8 +23,6 @@
                     name: "IDDrzava",
                     htmlAttributes: new { @class = "form-control" })
             </div>
-
-
             <div class="form-group">
                 @Html.Label(expression: "IDGrad", labelText: "Grad")
                 @Html.DropDownList(
@@ -50,10 +47,6 @@
                 <option value="50"> 50 </option>
             </select>
         }
-        @*@foreach(var k in Model.Pages)
-        {
-            @Html.Label(expression:"idPages",labelText:k.ToString())
-        }*@
         <table class="table table-sm table-striped bg-info">
             <thead>
                 <tr>
@@ -61,8 +54,8 @@
                     <th>Prezime</th>
                     <th>E-mail</th>
                     <th>Telefon</th>
-                    <th>Grad</th>
                     <th>Država</th>
+                    <th>Grad</th>
                     <th></th>
                 </tr>
             </thead>
@@ -79,16 +72,14 @@
                         <td>@k.Town.Naziv</td>
                         <td>@k.Town.Country.Naziv</td>
                         <td>
-                            @Html.ActionLink("Uredi", "EditCustomer", new { }) |
-                            @Html.ActionLink("Prikaži račune", "GetCustomersBills", new { id = k.IDKupac }) |
-
+                            @Html.ActionLink("Uredi", "EditCustomer", new {id=k.IDKupac }) |
+                            @Html.ActionLink("Prikaži račune", "GetCustomersBills", new { id = k.IDKupac }) 
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-
 @section scripts{
     <script>
         $('#IDDrzava').change(e => $('#formCustomer').submit());
@@ -99,16 +90,10 @@
             } else {
                 $('table').hide();
             }
-
-
         });
         $('#customersPerPage').change(e => $('#formCustomer').submit());
         $('#sortByType').change(e => $('#formCustomer').submit());
-
-
-
     </script>
-
 }
 
 

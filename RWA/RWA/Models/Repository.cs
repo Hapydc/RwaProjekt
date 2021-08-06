@@ -24,20 +24,6 @@ namespace RWA.Models
             return GetCustomerFromDataRow(row);
         }
 
-        public static int GetNumberOfCustomersInBase()
-        {
-            
-            var sql = $"select count(*) as brojKupaca from Kupac ";
-            var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
-            
-            while (result.Read())
-            {
-                 number = (int)result["brojKupaca"];
-            };
-            return number;
-
-
-        }
         public static IEnumerable<Customer> GetCustomers(int countryID, int? townID, SortType? sortType, int customersPerPage, int page)
         {
             switch (sortType)
@@ -422,7 +408,6 @@ namespace RWA.Models
         public static void UpdateSubCategory(SubCategory subCategory)
         {
             SqlHelper.ExecuteNonQuery(cs, "UpdateSubCategory", subCategory.IDPotKategorija, subCategory.Naziv,subCategory.KategorijaID);
-
         }
         public static void InsertSubCategory(SubCategory subCategory)
         {
