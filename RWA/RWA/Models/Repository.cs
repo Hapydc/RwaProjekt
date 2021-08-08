@@ -14,7 +14,6 @@ namespace RWA.Models
         public static DataSet ds { get; set; }
         private static string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         private static string sqlSortType;
-        private static int number;
 
 
         public static Customer GetCustomer(int idKupac)
@@ -407,7 +406,7 @@ namespace RWA.Models
 
         public static void UpdateSubCategory(SubCategory subCategory)
         {
-            SqlHelper.ExecuteNonQuery(cs, "UpdateSubCategory", subCategory.IDPotKategorija, subCategory.Naziv,subCategory.IDKategorija);
+            SqlHelper.ExecuteNonQuery(cs, "UpdateSubCategory", subCategory.IDPotKategorija, subCategory.Naziv,subCategory.KategorijaID);
         }
         public static void InsertSubCategory(SubCategory subCategory)
         {

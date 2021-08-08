@@ -35,7 +35,7 @@ namespace RWA.Controllers
         {
             if (ModelState.IsValid)
             {
-                subCategory.KategorijaID =subCategory.IDKategorija;
+                //subCategory.KategorijaID = ;
                 Repository.UpdateSubCategory(subCategory);
                 return RedirectToAction("Index");
             }

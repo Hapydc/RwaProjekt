@@ -136,6 +136,7 @@
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerSortType.cs" />
+    <Compile Include="Models\CustomerViewModel\EditSubCategoryVM.cs" />
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Repository.cs" />
