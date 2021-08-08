@@ -28,11 +28,10 @@ namespace RWA.Controllers
 
         }
         [HttpPost]
-        public ActionResult EditSubCategory(SubCategory subCategory, int IDKategorija)
+        public ActionResult EditSubCategory(SubCategory subCategory)
         {
             if (ModelState.IsValid)
             {
-                subCategory.KategorijaID = IDKategorija;
                 Repository.UpdateSubCategory(subCategory);
                 return RedirectToAction("Index");
             }
@@ -54,11 +53,10 @@ namespace RWA.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertSubCategory(SubCategory subCategory, int IDKategorija)
+        public ActionResult InsertSubCategory(SubCategory subCategory)
         {
             if (ModelState.IsValid)
             {
-                subCategory.KategorijaID = IDKategorija;
                 Repository.InsertSubCategory(subCategory);
                 return RedirectToAction("Index");
             }

@@ -8,14 +8,14 @@ namespace RWA.Models.SubCategoryViewModel
     public class IUSubCategoryViewModel
     {
         public bool IsInsert { get; set; }
-        public SubCategory subCategory { get; set; }
+        public SubCategory SubCategory { get; set; }
         public List<Category> Categories { get; set; }
         
 
-        public IUSubCategoryViewModel(bool isInsert, SubCategory SubCategory, List<Category> categories)
+        public IUSubCategoryViewModel(bool isInsert, SubCategory subCategory, List<Category> categories)
         {
             IsInsert = isInsert;
-            subCategory = SubCategory;
+            SubCategory = subCategory;
             Categories = categories;
         }
 
