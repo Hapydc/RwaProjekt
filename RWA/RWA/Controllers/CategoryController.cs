@@ -1,4 +1,5 @@
 ﻿using RWA.Models;
+using RWA.Models.CategoryViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,14 @@ namespace RWA.Controllers
             return View(categories);
         }
 
-
         [HttpGet]
         public ActionResult EditCategory(int id)
         {
             var category = Repository.GetCategory(id);
-            return View(category);
+            IUCategoryViewModel model = new IUCategoryViewModel(false, category);
+            return View("IUCategory", model);
         }
+
         [HttpPost]
         public ActionResult EditCategory(Category category)
         {
@@ -42,7 +44,8 @@ namespace RWA.Controllers
         public ActionResult InsertCategory()
         {
             Category category = new Category();
-            return View(category);
+            IUCategoryViewModel model = new IUCategoryViewModel(true, category);
+            return View("IUCategory", model);
 
         }
 
