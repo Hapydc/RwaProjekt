@@ -1,4 +1,5 @@
 ﻿using RWA.Models;
+using RWA.Models.ProductViewModel;
 using System.Web.Mvc;
 
 namespace RWA.Controllers
@@ -16,33 +17,36 @@ namespace RWA.Controllers
         [HttpGet]
         public ActionResult EditProduct(int id)
         {
+
             var product = Repository.GetProduct(id);
-            return View(product);
+            var subCategories = Repository.GetSubCategories();
+            IUProductViewModel model = new IUProductViewModel(false,product,subCategories);
+            return View("IUProduct", model);
         }
         [HttpPost]
-        public ActionResult EditProduct(Product product)
+        public ActionResult EditProduct(Product product,int IDPotKategorija)
         {
-            
+            product.PotKategorijaID = IDPotKategorija;
                 Repository.UpdateProduct(product);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index");           
             
-            //return EditProduct(product);
         }
 
         [HttpGet]
         public ActionResult InsertProduct()
         {
-            Product product = new Product();
-            return View(product);
-
+            var product = new Product();
+            var subCategories = Repository.GetSubCategories();
+            IUProductViewModel model = new IUProductViewModel(false, product, subCategories);
+            return View("IUSubCategory", model);
         }
 
         [HttpPost]
-        public ActionResult InsertProduct(Product product)
+        public ActionResult InsertProduct(Product product,int IDPotKategorija)
         {
-            
-                Repository.InsertProduct(product);
-                return RedirectToAction("Index");
+            product.PotKategorijaID = IDPotKategorija;
+            Repository.UpdateProduct(product);
+            return RedirectToAction("Index");
         }
           
         public ActionResult DeleteProduct(int id)

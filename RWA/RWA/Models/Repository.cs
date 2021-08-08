@@ -332,7 +332,6 @@ namespace RWA.Models
 
         public static List<SubCategory> GetSubCategories()
         {
-            Category category = new Category();
             List<SubCategory> subcategories = new List<SubCategory>();
             var sql = $"Select* from PotKategorija as pk ";
             var result = SqlHelper.ExecuteReader(cs, CommandType.Text, sql);
@@ -348,8 +347,6 @@ namespace RWA.Models
 
             }
             return subcategories;
-
-
         }
         public static SubCategory GetSubCategory(int id)
         {
