@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategoryViewModel\IUCategoryViewModel.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerSortType.cs" />
@@ -202,6 +203,7 @@
     <Content Include="Views\SubCategory\EditSubCategory.cshtml" />
     <Content Include="Views\SubCategory\InsertSubCategory.cshtml" />
     <Content Include="Views\Customer\ShowStavke.cshtml" />
+    <Content Include="Views\Category\IUCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
