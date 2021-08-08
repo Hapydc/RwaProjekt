@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace RWA.Controllers 
+namespace RWA.Controllers
 {
     public class CategoryController : Controller
     {
@@ -20,7 +20,7 @@ namespace RWA.Controllers
         [HttpGet]
         public ActionResult EditCategory(int id)
         {
-            var category = Repository.GetCategory(id);           
+            var category = Repository.GetCategory(id);
             return View(category);
         }
         [HttpPost]
@@ -34,8 +34,8 @@ namespace RWA.Controllers
             else
             {
                 return RedirectToAction("EditCategory");
-            }           
-            
+            }
+
         }
 
         [HttpGet]
@@ -53,6 +53,10 @@ namespace RWA.Controllers
             {
                 Repository.InsertCategory(category);
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                RedirectToAction("InsertCategory");
             }
 
             return View(category);

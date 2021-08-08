@@ -144,7 +144,6 @@
     <Compile Include="Models\SubCategoryViewModel\SubCategoryVM.cs" />
     <Compile Include="Models\Town.cs" />
     <Compile Include="Models\CustomerViewModel\EditCustomerVM.cs" />
-    <Compile Include="Models\CustomerViewModel\SelectTownVM.cs" />
     <Compile Include="Models\CustomerViewModel\ShowCustomersVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Customer\EditCustomer.aspx.cs">
@@ -207,7 +206,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ProductViewModel\" />
-    <Folder Include="Views\Bill\" />
     <Folder Include="WebForms\" />
   </ItemGroup>
   <ItemGroup>

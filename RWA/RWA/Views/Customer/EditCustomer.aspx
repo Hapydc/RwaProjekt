@@ -13,23 +13,20 @@
             <input runat="server" type="text" id="firstName" />
         </div>
         <div class="form-control">
-
             <input runat="server" type="text" id="lastName" />
         </div>
         <div class="form-control">
-
             <input runat="server" type="text" id="phone" />
         </div>
         <div class="form-control">
-
             <input runat="server" type="text" id="email" />
         </div>
         <div class="form-control">
-
             <asp:DropDownList ID="dlTowns" runat="server"></asp:DropDownList>
         </div>
-        
-
+        <div class="form-control">
+            <asp:Button ID="Button1" runat="server" Text="Button" OnServerClick="editCustomerData_Click" />
+            </div>
     </form>
 </body>
 </html>

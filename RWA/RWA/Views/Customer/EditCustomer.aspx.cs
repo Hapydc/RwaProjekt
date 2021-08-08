@@ -21,7 +21,20 @@ namespace RWA.WebForms
             foreach (var item in towns)
             {
                 dlTowns.Items.Add(item.Naziv);
-            }
+            }         
+        }
+
+        protected void editCustomerData_Click(object sender, EventArgs e)
+        {
+            Customer customer = new Customer
+            {
+                IDKupac= (int)Session["CustomerID"],
+                Ime = firstName.Value,
+                Prezime = lastName.Value,
+                Email = email.Value,
+                Telefon = phone.Value
+            };
+            Repository.UpdateCustomer(customer);
         }
     }
 }

@@ -8,9 +8,6 @@
 
 @using (Html.BeginForm()) 
 {
-<p>
-    @Html.ActionLink("Kreiraj", "InsertCategory", new { /* id=item.PrimaryKey */ }) |
-</p>
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">

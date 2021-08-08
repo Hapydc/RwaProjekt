@@ -407,7 +407,7 @@ namespace RWA.Models
 
         public static void UpdateSubCategory(SubCategory subCategory)
         {
-            SqlHelper.ExecuteNonQuery(cs, "UpdateSubCategory", subCategory.IDPotKategorija, subCategory.Naziv,subCategory.KategorijaID);
+            SqlHelper.ExecuteNonQuery(cs, "UpdateSubCategory", subCategory.IDPotKategorija, subCategory.Naziv,subCategory.IDKategorija);
         }
         public static void InsertSubCategory(SubCategory subCategory)
         {

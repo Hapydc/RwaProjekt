@@ -35,23 +35,7 @@ namespace RWA.Controllers
                 Customers = Repository.GetCustomers(filterModel.IDDrzava, filterModel.IDGrad, filterModel.SortByType, filterModel.CustomersPerPage, filterModel.Page)
             };
 
-            //int pages = allCustomers / filterModel.CustomersPerPage;
 
-            //for (int i = 1; i <= pages; i++)
-            //{
-            //    model.Pages.Add(i);
-
-            //}
-
-            return View(model);
-        }
-        public ActionResult SelectTown(Country country)
-        {
-            var model = new SelectTownVM
-            {
-                Countries = Repository.GetCountries(),
-                Towns = Repository.GetTowns(country.IDDrzava)
-            };
             return View(model);
         }
         public ActionResult GetCustomersBills(int id)
@@ -70,8 +54,7 @@ namespace RWA.Controllers
         public ActionResult EditCustomer(EditCustomerVM customerVM)
         {
             var customer = customerVM.Customer;
-            customer.IDKupac = 1;
-            customer.Ime = "Ivica";
+            customer.IDKupac = (int)Session["CustomerID"];        
             Repository.UpdateCustomer(customer);
             return RedirectToAction("Index");
         }
@@ -80,6 +63,5 @@ namespace RWA.Controllers
             var stavke = Repository.GetStavke(id);
             return View(stavke);
         }
-
     }
 }
