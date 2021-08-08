@@ -13,6 +13,9 @@ namespace RWA.Models
         [Display(Name = "Naziv")]
         [Required(ErrorMessage = "Naziv je obvezan")]
         public string Naziv { get; set; }
+
+        [Display(Name = "Naziv")]
+        [Required(ErrorMessage = "Kategorija je obvezna")]
         public int KategorijaID { get; set; }
 
     }

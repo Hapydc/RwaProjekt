@@ -21,27 +21,24 @@ namespace RWA.Controllers
         [HttpGet]
         public ActionResult EditSubCategory(int id)
         {
-
-            var subCategory = new SubCategoryVM
-            {
-                subcategory = Repository.GetSubCategory(id),
-                categories = Repository.GetCategories()
-            };
-            return View(subCategory);
+            var subCategory = Repository.GetSubCategory(id);
+            var categories = Repository.GetCategories();
+            IUSubCategoryViewModel model = new IUSubCategoryViewModel(false, subCategory, categories);
+            return View("IUSubCategory",model);
 
         }
         [HttpPost]
-        public ActionResult EditSubCategory(SubCategory subCategory)
+        public ActionResult EditSubCategory(SubCategory subCategory, int IDKategorija)
         {
             if (ModelState.IsValid)
             {
-                //subCategory.KategorijaID = ;
+                subCategory.KategorijaID = IDKategorija;
                 Repository.UpdateSubCategory(subCategory);
                 return RedirectToAction("Index");
             }
             else
             {
-                return RedirectToAction("EditSubCategory");
+                return View("EditSubCategory");
             }
             
         }
@@ -50,19 +47,22 @@ namespace RWA.Controllers
         public ActionResult InsertSubCategory()
         {
             SubCategory subCategory = new SubCategory();
-            return View(subCategory);
+            var categories = Repository.GetCategories();
+            IUSubCategoryViewModel model = new IUSubCategoryViewModel(true, subCategory, categories);
+            return View("IUSubCategory", model);
 
         }
 
         [HttpPost]
-        public ActionResult InsertSubCategory(SubCategory subCategory)
+        public ActionResult InsertSubCategory(SubCategory subCategory, int IDKategorija)
         {
             if (ModelState.IsValid)
             {
+                subCategory.KategorijaID = IDKategorija;
                 Repository.InsertSubCategory(subCategory);
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("InsertSubCategory");
+            return View("InsertSubCategory");
         }
 
         public ActionResult DeleteSubCategory(int id)

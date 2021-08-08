@@ -143,7 +143,7 @@
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Stavka.cs" />
     <Compile Include="Models\SubCategory.cs" />
-    <Compile Include="Models\SubCategoryViewModel\SubCategoryVM.cs" />
+    <Compile Include="Models\SubCategoryViewModel\IUSubCategoryViewModel.cs" />
     <Compile Include="Models\Town.cs" />
     <Compile Include="Models\CustomerViewModel\EditCustomerVM.cs" />
     <Compile Include="Models\CustomerViewModel\ShowCustomersVM.cs" />
@@ -198,13 +198,12 @@
     <Content Include="Views\Product\EditProduct.cshtml" />
     <Content Include="Views\Product\InsertProduct.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Category\EditCategory.cshtml" />
-    <Content Include="Views\Category\InsertCategory.cshtml" />
     <Content Include="Views\SubCategory\Index.cshtml" />
     <Content Include="Views\SubCategory\EditSubCategory.cshtml" />
     <Content Include="Views\SubCategory\InsertSubCategory.cshtml" />
     <Content Include="Views\Customer\ShowStavke.cshtml" />
     <Content Include="Views\Category\IUCategory.cshtml" />
+    <Content Include="Views\SubCategory\IUSubCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
