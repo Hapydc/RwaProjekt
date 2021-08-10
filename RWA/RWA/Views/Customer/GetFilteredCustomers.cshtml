@@ -75,8 +75,7 @@
                     <td>@k.Town.Country.Naziv</td>
                     <td>
                         @Html.ActionLink("Uredi", "EditCustomer", new { id = k.IDKupac }) |
-                        <button type="button" class="btn btn-xs" onclick="d(@k.IDKupac)">
-                        </button>
+                        <input type="button" value="Prikaži račune"  onclick="showBillPartialView(@k.IDKupac)" />
                     </td>
                 </tr>
             }
@@ -84,7 +83,6 @@
     </table>
 </div>
 <div id="getFilteredCustomers">
-    Here goes partial view data
 </div>
 
 @section scripts{
@@ -100,12 +98,14 @@
         });
         $('#customersPerPage').change(e => $('#formCustomer').submit());
         $('#sortByType').change(e => $('#formCustomer').submit());
-        function d(id) {
+
+        function showBillPartialView(id) {
             var url = "/Customer/ShowCustomerBills/";
-            $.post(url, { id: id })
+            $.get(url, { id: id })
                 .done(function (response) {
                     $("#getFilteredCustomers").html(response);
                 });
+        }
     </script>
 }
 

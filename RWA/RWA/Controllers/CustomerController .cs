@@ -43,7 +43,7 @@ namespace RWA.Controllers
             var bills = Repository.GetCustomersBills(id);
             return View(bills);
         }
-
+        [HttpGet]
         public PartialViewResult ShowCustomerBills(int id)
         {
             var bills = Repository.GetCustomersBills(id);
