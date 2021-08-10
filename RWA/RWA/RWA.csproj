@@ -128,7 +128,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SubCategoryController.cs" />
-    <Compile Include="Controllers\UIProductViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +202,7 @@
     <Content Include="Views\Category\IUCategory.cshtml" />
     <Content Include="Views\SubCategory\IUSubCategory.cshtml" />
     <Content Include="Views\Product\IUProduct.cshtml" />
+    <Content Include="Views\Customer\_ShowCustomerBills.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

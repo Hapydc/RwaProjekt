@@ -24,9 +24,8 @@ namespace RWA.Controllers
             return View("IUProduct", model);
         }
         [HttpPost]
-        public ActionResult EditProduct(Product product,int IDPotKategorija)
+        public ActionResult EditProduct(Product product)
         {
-            product.PotKategorijaID = IDPotKategorija;
                 Repository.UpdateProduct(product);
                 return RedirectToAction("Index");           
             
@@ -38,13 +37,13 @@ namespace RWA.Controllers
             var product = new Product();
             var subCategories = Repository.GetSubCategories();
             IUProductViewModel model = new IUProductViewModel(false, product, subCategories);
-            return View("IUSubCategory", model);
+            return View("IUProduct", model);
+
         }
 
         [HttpPost]
-        public ActionResult InsertProduct(Product product,int IDPotKategorija)
+        public ActionResult InsertProduct(Product product)
         {
-            product.PotKategorijaID = IDPotKategorija;
             Repository.UpdateProduct(product);
             return RedirectToAction("Index");
         }

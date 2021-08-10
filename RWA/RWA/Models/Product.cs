@@ -13,9 +13,8 @@ namespace RWA.Models
         public string Naziv { get; set; }
         public string BrojProizvoda { get; set; }
         public string Boja { get; set; }
-        [Range(0, 10)]
-        public short MinKolicinaNaSkladistu { get; set; }
-        [Range(0, 10)]
+        [Range(1, 1000)]
+        public short MinKolicinaNaSkladistu { get; set; }      
         public decimal CijenaBezPdva { get; set; }
         public int? PotKategorijaID { get; set; }
         public SubCategory Subcategory { get; set; }

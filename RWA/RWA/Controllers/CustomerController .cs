@@ -43,6 +43,12 @@ namespace RWA.Controllers
             var bills = Repository.GetCustomersBills(id);
             return View(bills);
         }
+
+        public PartialViewResult ShowCustomerBills(int id)
+        {
+            var bills = Repository.GetCustomersBills(id);
+            return PartialView("_ShowCustomerBills",bills);
+        }
         [HttpGet]
         public ActionResult EditCustomer(int id)
         {
@@ -50,18 +56,22 @@ namespace RWA.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult EditCustomer(EditCustomerVM customerVM)
-        {
-            var customer = customerVM.Customer;
-            customer.IDKupac = (int)Session["CustomerID"];        
-            Repository.UpdateCustomer(customer);
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //public ActionResult EditCustomer(EditCustomerVM customerVM)
+        //{
+        //    var customer = customerVM.Customer;
+        //    customer.IDKupac = (int)Session["CustomerID"];        
+        //    Repository.UpdateCustomer(customer);
+        //    return RedirectToAction("Index");
+        //}
+
+
+
         public ActionResult ShowStavke(int id)
         {
             var stavke = Repository.GetStavke(id);
             return View(stavke);
+
         }
     }
 }

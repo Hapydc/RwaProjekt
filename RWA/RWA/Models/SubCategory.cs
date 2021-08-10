@@ -16,7 +16,6 @@ namespace RWA.Models
 
         [Display(Name = "Naziv")]
         [Required(ErrorMessage = "Kategorija je obvezna")]
-        public int KategorijaID { get; set; }
-
+        public int KategorijaID { get; set; }       
     }
 }

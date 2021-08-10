@@ -25,7 +25,7 @@
             <asp:DropDownList ID="dlTowns" runat="server"></asp:DropDownList>
         </div>
         <div class="form-control">
-            <asp:Button ID="Button1" runat="server" Text="Button" OnServerClick="editCustomerData_Click" />
+            <asp:Button ID="Button1" runat="server" Text="Button" OnClick="editCustomerData_Click" />
             </div>
     </form>
 </body>

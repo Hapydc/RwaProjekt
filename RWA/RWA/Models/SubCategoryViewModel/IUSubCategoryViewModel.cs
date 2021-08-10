@@ -26,7 +26,6 @@ namespace RWA.Models.SubCategoryViewModel
                 return IsInsert ? "Unos potkategorije" : "Izmjena potkategorije";
             }
         }
-
         public string ActionMetod
         {
             get

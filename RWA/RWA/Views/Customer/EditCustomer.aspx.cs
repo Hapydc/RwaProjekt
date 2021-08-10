@@ -28,11 +28,12 @@ namespace RWA.WebForms
         {
             Customer customer = new Customer
             {
-                IDKupac= (int)Session["CustomerID"],
+                IDKupac = (int)Session["CustomerID"],
                 Ime = firstName.Value,
                 Prezime = lastName.Value,
                 Email = email.Value,
-                Telefon = phone.Value
+                Telefon = phone.Value  
+                
             };
             Repository.UpdateCustomer(customer);
         }
