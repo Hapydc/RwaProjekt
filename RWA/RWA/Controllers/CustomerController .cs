@@ -38,11 +38,6 @@ namespace RWA.Controllers
 
             return View(model);
         }
-        public ActionResult GetCustomersBills(int id)
-        {
-            var bills = Repository.GetCustomersBills(id);
-            return View(bills);
-        }
         [HttpGet]
         public PartialViewResult ShowCustomerBills(int id)
         {
@@ -67,10 +62,10 @@ namespace RWA.Controllers
 
 
 
-        public ActionResult ShowStavke(int id)
+        public PartialViewResult ShowStavke(int id)
         {
             var stavke = Repository.GetStavke(id);
-            return View(stavke);
+            return PartialView("_ShowStavke",stavke);
 
         }
     }

@@ -1,11 +1,5 @@
 ﻿@model IEnumerable<RWA.Models.Stavka>
 
-@{
-    ViewBag.Title = "ShowStavke";
-}
-
-    <h2>Stavke računa </h2>
-
 <table class="table">
     <tr>
         <th>
@@ -18,7 +12,7 @@
             @Html.DisplayNameFor(model => model.Kolicina)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Product.Naziv)
+            @Html.DisplayNameFor(model => model.ProizvodID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CijenaPoKomadu)
@@ -44,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.Kolicina)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Product.Naziv)
+            @Html.DisplayFor(modelItem => item.ProizvodID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CijenaPoKomadu)
@@ -55,6 +49,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.UkupnaCijena)
         </td>
+
     </tr>
 }
 

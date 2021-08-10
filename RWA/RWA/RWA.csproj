@@ -168,7 +168,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\ShowCustomerBills.js" />
+    <Content Include="Scripts\ShowBillStavka.js" />
     <Content Include="Views\Customer\EditCustomer.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -194,16 +194,15 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Customer\GetCustomersBills.cshtml" />
     <Content Include="Views\Customer\GetFilteredCustomers.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\SubCategory\Index.cshtml" />
-    <Content Include="Views\Customer\ShowStavke.cshtml" />
     <Content Include="Views\Category\IUCategory.cshtml" />
     <Content Include="Views\SubCategory\IUSubCategory.cshtml" />
     <Content Include="Views\Product\IUProduct.cshtml" />
     <Content Include="Views\Customer\_ShowCustomerBills.cshtml" />
+    <Content Include="Views\Customer\_ShowStavke.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

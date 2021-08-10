@@ -1,7 +1,7 @@
 ﻿@model  RWA.Models.ViewModel.ShowCustomersVM
 @{
     ViewBag.Title = "Kupci";
-
+    <script src="~/Scripts/ShowBillStavka.js"></script>
     SelectList ddlGradovi = new SelectList(
     items: Model.Towns,
     dataTextField: "Naziv",
@@ -82,7 +82,11 @@
         </tbody>
     </table>
 </div>
-<div id="getFilteredCustomers">
+<div id="getCustomersBills">
+</div>
+
+<div id="getBillStavke">
+
 </div>
 
 @section scripts{
@@ -103,7 +107,7 @@
             var url = "/Customer/ShowCustomerBills/";
             $.get(url, { id: id })
                 .done(function (response) {
-                    $("#getFilteredCustomers").html(response);
+                    $("#getCustomersBills").html(response);
                 });
         }
     </script>
