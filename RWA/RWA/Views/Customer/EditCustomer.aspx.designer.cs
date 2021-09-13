@@ -24,31 +24,31 @@ namespace RWA.WebForms
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// firstName control.
+        /// Ime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText firstName;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Ime;
 
         /// <summary>
-        /// lastName control.
+        /// Prezime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText lastName;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Prezime;
 
         /// <summary>
-        /// phone control.
+        /// Telefon control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText phone;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Telefon;
 
         /// <summary>
         /// email control.
@@ -60,13 +60,13 @@ namespace RWA.WebForms
         protected global::System.Web.UI.HtmlControls.HtmlInputText email;
 
         /// <summary>
-        /// dlTowns control.
+        /// grad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dlTowns;
+        protected global::System.Web.UI.WebControls.DropDownList grad;
 
         /// <summary>
         /// Button1 control.

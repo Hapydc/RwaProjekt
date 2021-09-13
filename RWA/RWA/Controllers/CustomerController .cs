@@ -51,14 +51,14 @@ namespace RWA.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult EditCustomer(EditCustomerVM customerVM)
-        //{
-        //    var customer = customerVM.Customer;
-        //    customer.IDKupac = (int)Session["CustomerID"];        
-        //    Repository.UpdateCustomer(customer);
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        public ActionResult EditCustomer(Customer customer)
+        {
+            customer.IDKupac = (int)Session["CustomerID"];
+            customer.GradID = 1;
+            Repository.UpdateCustomer(customer);
+            return RedirectToAction("Index");
+        }
 
 
 

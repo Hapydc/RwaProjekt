@@ -10,22 +10,22 @@
 <body>
     <form id="form1" runat="server">
         <div class="form-control">
-            <input runat="server" type="text" id="firstName" />
+            <input runat="server" type="text" id="Ime" />
         </div>
         <div class="form-control">
-            <input runat="server" type="text" id="lastName" />
+            <input runat="server" type="text" id="Prezime" />
         </div>
         <div class="form-control">
-            <input runat="server" type="text" id="phone" />
+            <input runat="server" type="text" id="Telefon" />
         </div>
         <div class="form-control">
             <input runat="server" type="text" id="email" />
         </div>
         <div class="form-control">
-            <asp:DropDownList ID="dlTowns" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="grad" DataValueField="" runat="server"></asp:DropDownList>
         </div>
         <div class="form-control">
-            <asp:Button ID="Button1" runat="server" Text="Button" OnClick="editCustomerData_Click" />
+            <asp:Button ID="Button1" runat="server" Text="Spremi"  />
             </div>
     </form>
 </body>
