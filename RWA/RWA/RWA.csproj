@@ -137,6 +137,7 @@
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerSortType.cs" />
+    <Compile Include="Models\CustomersPerPage.cs" />
     <Compile Include="Models\CustomerViewModel\EditSubCategoryVM.cs" />
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\ProductViewModel\IUProductViewModel.cs" />

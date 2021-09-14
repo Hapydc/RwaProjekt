@@ -9,23 +9,25 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="form-control">
-            <input runat="server" type="text" id="Ime" />
+        <div class="jumbotron">
+        <div>
+            <input  runat="server" type="text" id="Ime" />
         </div>
-        <div class="form-control">
+        <div >
             <input runat="server" type="text" id="Prezime" />
         </div>
-        <div class="form-control">
+        <div >
             <input runat="server" type="text" id="Telefon" />
         </div>
-        <div class="form-control">
+        <div >
             <input runat="server" type="text" id="email" />
         </div>
-        <div class="form-control">
-            <asp:DropDownList ID="grad" DataValueField="" runat="server"></asp:DropDownList>
+        <div >
+            <asp:DropDownList class="" ID="grad" DataValueField="" runat="server"></asp:DropDownList>
         </div>
-        <div class="form-control">
+        <div>
             <asp:Button ID="Button1" runat="server" Text="Spremi"  />
+            </div>
             </div>
     </form>
 </body>

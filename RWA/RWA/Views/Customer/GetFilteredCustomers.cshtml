@@ -16,8 +16,15 @@
         items: Model.Sorts,
         dataTextField : "Naziv",
         dataValueField : "ID",
-        selectedValue:Model.SortByType       
+        selectedValue:Model.SortByType
         );
+    SelectList ddlCustomersPerPage = new SelectList(
+        items: Model.CustomersPerPage,
+        dataTextField: "BrojKupacaPoStranici",
+        dataValueField: "ID",
+        selectedValue: Model.CustomersPerOnePage
+        );
+
 }
 <div class="jumbotron">
     @using (Html.BeginForm(controllerName: "Customer", actionName: "GetFilteredCustomers", htmlAttributes: new { id = "formCustomer" }, routeValues: null, method: FormMethod.Post))
@@ -42,21 +49,21 @@
 
         <div class="form-group">
             @Html.Label(expression: "ID", labelText: "Sortiraj")
-            @Html.DropDownList(               
+            @Html.DropDownList(
                  selectList: ddlSortTypes,
                  name: "SortByType",
                  htmlAttributes: new { @class = "form-control" })
         </div>
-        @Html.Label(expression: "CustomersPerPage", labelText: "Broj kupaca po stranici")
-        <select name="customersPerPage" id="customersPerPage" class="form-control">
-            <option value="10"> 10 </option>
-            <option value="20"> 20 </option>
-            <option value="25"> 25 </option>
-            <option value="50"> 50 </option>
-        </select>
+        <div class="form-group">
+            @Html.Label(expression: "ID", labelText: "Broj kupaca po stranici")
+            @Html.DropDownList(
+                 selectList: ddlCustomersPerPage,
+                 name: "CustomersPerPage",
+                 htmlAttributes: new { @class = "form-control" })
+        </div>
         <div>
             <input type="button" value="Prethodna stranica" onclick="pageDown()" />
-            <input type="text" name="Page" id="page" value="@Model.Page"  />
+            <input type="text" name="Page" id="page" value="@Model.Page" />
             <input type="button" value="Sljedeća stranica" onclick="pageUp()" />
         </div>
     }
@@ -113,7 +120,7 @@
             }
         });
         $('#SortByType').change(e => $('#formCustomer').submit());
-        $('#sortByType').change(e => $('#formCustomer').submit());
+        $('#CustomersPerPage').change(e => $('#formCustomer').submit());
 
         function showBillPartialView(id) {
             var url = "/Customer/ShowCustomerBills/";
