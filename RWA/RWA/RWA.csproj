@@ -142,6 +142,7 @@
     <Compile Include="Models\ProductViewModel\IUProductViewModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Repository.cs" />
+    <Compile Include="Models\Sort.cs" />
     <Compile Include="Models\Stavka.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\SubCategoryViewModel\IUSubCategoryViewModel.cs" />

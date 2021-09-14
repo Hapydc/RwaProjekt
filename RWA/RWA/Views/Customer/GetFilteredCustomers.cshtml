@@ -3,14 +3,21 @@
     ViewBag.Title = "Kupci";
     <script src="~/Scripts/ShowBillStavka.js"></script>
     SelectList ddlGradovi = new SelectList(
-    items: Model.Towns,
-    dataTextField: "Naziv",
-    dataValueField: "IDGrad");
+        items: Model.Towns,
+        dataTextField: "Naziv",
+        dataValueField: "IDGrad");
 
     SelectList ddlDrzave = new SelectList(
         items: Model.Countries,
         dataTextField: "Naziv",
         dataValueField: "IDDrzava");
+
+    SelectList ddlSortTypes = new SelectList(
+        items: Model.Sorts,
+        dataTextField : "Naziv",
+        dataValueField : "ID",
+        selectedValue:Model.SortByType       
+        );
 }
 <div class="jumbotron">
     @using (Html.BeginForm(controllerName: "Customer", actionName: "GetFilteredCustomers", htmlAttributes: new { id = "formCustomer" }, routeValues: null, method: FormMethod.Post))
@@ -32,13 +39,14 @@
                  htmlAttributes: new { @class = "form-control" })
         </div>
         <hr />
-        @Html.Label(expression: "idSort", labelText: "Sortiraj")
-        <select name="sortByType" id="sortByType" class="form-control">
-            <option value="0">Sortirajte po imenu silazno </option>
-            <option value="1">Sortirajte po imenu uzlazno </option>
-            <option value="2">Sortirajte po prezimenu silazno </option>
-            <option value="3">Sortirajte po prezimenu uzlazno </option>
-        </select>
+
+        <div class="form-group">
+            @Html.Label(expression: "ID", labelText: "Sortiraj")
+            @Html.DropDownList(               
+                 selectList: ddlSortTypes,
+                 name: "SortByType",
+                 htmlAttributes: new { @class = "form-control" })
+        </div>
         @Html.Label(expression: "CustomersPerPage", labelText: "Broj kupaca po stranici")
         <select name="customersPerPage" id="customersPerPage" class="form-control">
             <option value="10"> 10 </option>
@@ -46,8 +54,11 @@
             <option value="25"> 25 </option>
             <option value="50"> 50 </option>
         </select>
-
-
+        <div>
+            <input type="button" value="Prethodna stranica" onclick="pageDown()" />
+            <input type="text" name="Page" id="page" value="@Model.Page"  />
+            <input type="button" value="Sljedeća stranica" onclick="pageUp()" />
+        </div>
     }
     <table class="table table-sm table-striped bg-info">
         <thead>
@@ -75,7 +86,7 @@
                     <td>@k.Town.Country.Naziv</td>
                     <td>
                         @Html.ActionLink("Uredi", "EditCustomer", new { id = k.IDKupac }) |
-                        <input type="button" value="Prikaži račune"  onclick="showBillPartialView(@k.IDKupac)" />
+                        <input type="button" value="Prikaži račune" onclick="showBillPartialView(@k.IDKupac)" />
                     </td>
                 </tr>
             }
@@ -91,6 +102,7 @@
 
 @section scripts{
     <script>
+        var page = @Model.Page;
         $('#IDDrzava').change(e => $('#formCustomer').submit());
         $('#IDGrad').change(e => {
             if (e.target.value !== '') {
@@ -100,7 +112,7 @@
                 $('table').hide();
             }
         });
-        $('#customersPerPage').change(e => $('#formCustomer').submit());
+        $('#SortByType').change(e => $('#formCustomer').submit());
         $('#sortByType').change(e => $('#formCustomer').submit());
 
         function showBillPartialView(id) {
@@ -110,6 +122,19 @@
                     $("#getCustomersBills").html(response);
                 });
         }
+        function pageDown() {
+            page = page - 1;
+            $("#page").val(page);
+            $('#formCustomer').submit();
+        };
+
+        function pageUp() {
+            page = page + 1;
+            $("#page").val(page);
+            $('#formCustomer').submit();
+
+        };
+        
     </script>
 }
 

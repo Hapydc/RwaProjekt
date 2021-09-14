@@ -20,6 +20,7 @@ namespace RWA.Controllers
         }
         public ActionResult GetFilteredCustomers(FilterModel filterModel)
         {
+
             if (filterModel.CustomersPerPage==0)
             {
                 filterModel.CustomersPerPage = 10;
@@ -30,9 +31,11 @@ namespace RWA.Controllers
             }
             var model = new ShowCustomersVM
             {
+                SortByType = (int)filterModel.SortByType,
                 Countries = Repository.GetCountries(),
                 Towns = Repository.GetTowns(filterModel.IDDrzava),
-                Customers = Repository.GetCustomers(filterModel.IDDrzava, filterModel.IDGrad, filterModel.SortByType, filterModel.CustomersPerPage, filterModel.Page)
+                Customers = Repository.GetCustomers(filterModel.IDDrzava, filterModel.IDGrad, filterModel.SortByType, filterModel.CustomersPerPage, filterModel.Page),
+                Page = filterModel.Page
             };
 
 
